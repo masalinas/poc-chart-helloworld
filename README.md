@@ -42,7 +42,12 @@ docker push ofertoio/helloworld-chart
 
 - **STEP08**: Package your helm chart
 ```shell
-helm package helm
+helm package helm-chart
+```
+
+To create a new helm chart package execute
+```shell
+helm create helm-chart
 ```
 
 - **STEP09**: deploy helm chart release in minikube
