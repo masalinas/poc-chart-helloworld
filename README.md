@@ -55,6 +55,8 @@ helm create helm-chart
 helm install helloworld-chart helloworld-chart-0.1.0.tgz
 ```
 
+![kubernetes Dashboard](captures/kubernetes_dashboard.png "kubernetes Dashboard")
+
 - **STEP10**: Activate tunelling to expose kubernetes service
 ```shell
 sudo minikube tunnel
