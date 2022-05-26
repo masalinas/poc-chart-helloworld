@@ -15,9 +15,8 @@ minikube addons enable dashboard
 - **STEP03**: Run dashboard addon
 ```shell
 minikube dashboard
-
-[Dashboard Link](http://127.0.0.1:39221/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/service?namespace=default)
 ```
+[Dashboard Link](http://127.0.0.1:39221/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/service?namespace=default)
 
 - **STEP04**: Build docker image
 ```shell
