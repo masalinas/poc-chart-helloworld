@@ -1,6 +1,6 @@
 ## Description
 
-PoC Helloworld Helm Package deploy in minikube
+PoC Helloworld Helm Package deployed in minikube
 
 ## Deployment steps: helm chart
 
