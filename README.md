@@ -60,6 +60,18 @@ helm install helloworld-chart helloworld-chart-0.1.0.tgz
 helm delete helloworld-chart
 ```
 
+- **STEP11**: install nova CLI to check chart versions
+```shell
+curl -L "https://github.com/FairwindsOps/nova/releases/download/1.0.0/nova_1.0.0_linux_amd64.tar.gz" > nova.tar.gz
+tar -xvf nova.tar.gz
+sudo mv nova /usr/local/bin/
+```
+
+- **STEP12**: list helm relases installed
+```shell
+nova find
+```
+
 ## Deployment steps: kubernetes deployment
 
 - **STEP01**: a simple sample to be deployed on minikube like deployment
