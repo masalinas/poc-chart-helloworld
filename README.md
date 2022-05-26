@@ -60,21 +60,21 @@ helm install helloworld-chart helloworld-chart-0.1.0.tgz
 sudo minikube tunnel
 ```
 
-- **STEP11**: remove helm chart release from minikube
-```shell
-helm delete helloworld-chart
-```
-
-- **STEP12**: [install nova CLI](https://nova.docs.fairwinds.com/installation/#installation) to check chart versions
+- **STEP11**: [install nova CLI](https://nova.docs.fairwinds.com/installation/#installation) to check chart versions
 ```shell
 curl -L "https://github.com/FairwindsOps/nova/releases/download/1.0.0/nova_1.0.0_linux_amd64.tar.gz" > nova.tar.gz
 tar -xvf nova.tar.gz
 sudo mv nova /usr/local/bin/
 ```
 
-- **STEP13**: list helm relases installed
+- **STEP12**: list helm relases installed
 ```shell
 nova find
+```
+
+- **STEP13**: remove helm chart release from minikube
+```shell
+helm delete helloworld-chart
 ```
 
 ## Deployment steps: kubernetes deployment
