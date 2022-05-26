@@ -9,12 +9,12 @@ PoC Helloworld Helm Package deploy in minikube
 minikube start
 ```
 
-- **STEP 02**: Activate dashboard addon to minikube
+- **STEP 02**: Activate dashboard addon in minikube
 ```shell
 minikube addons enable dashboard
 ```
 
-- **STEP03**: Run dashboard addon
+- **STEP03**: Run Dashboard addon
 ```shell
 minikube dashboard
 ```
@@ -25,17 +25,17 @@ minikube dashboard
 docker build -t helloworld-chart .
 ```
 
-- **STEP05**: tag the docker image to be publish in your docker hub account
+- **STEP05**: tag the docker image to be published under your Docker Hub account
 ```shell
 docker tag helloworld-chart ofertoio/helloworld-chart
 ```
 
-- **STEP06**: login in docker hub docker image repository
+- **STEP06**: login in your Docker Hub account
 ```shell
 docker login -u ofertopio -p
 ```
 
-- **STEP07**: Push docker image to Docker hug account
+- **STEP07**: Push docker image to your Docker Hug account
 ```shell
 docker push ofertoio/helloworld-chart
 ```
@@ -45,12 +45,12 @@ docker push ofertoio/helloworld-chart
 helm package helm
 ```
 
-- **STEP09**: dèploy helm chart release in minikube
+- **STEP09**: deploy helm chart release in minikube
 ```shell
 helm install helloworld-chart helloworld-chart-0.1.0.tgz
 ```
 
-- **STEP10**: remove helm chart release
+- **STEP10**: remove helm chart release from minikube
 ```shell
 helm delete helloworld-chart
 ```
