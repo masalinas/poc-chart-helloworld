@@ -2,7 +2,7 @@
 
 PoC Helloworld Helm Package deploy in minikube
 
-## Deployment steps: helm chart
+## Deployment steps: helm chart
 
 - **STEP 01**: Start minikube cluster
 ```shell
