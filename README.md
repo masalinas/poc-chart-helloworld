@@ -60,7 +60,7 @@ helm install helloworld-chart helloworld-chart-0.1.0.tgz
 helm delete helloworld-chart
 ```
 
-- **STEP11**: install nova CLI to check chart versions
+- **STEP11**: [install nova CLI](https://nova.docs.fairwinds.com/installation/#installation) to check chart versions
 ```shell
 curl -L "https://github.com/FairwindsOps/nova/releases/download/1.0.0/nova_1.0.0_linux_amd64.tar.gz" > nova.tar.gz
 tar -xvf nova.tar.gz
