@@ -1,7 +1,9 @@
-# Description
+## Description
+
 PoC Helloworld Helm Package deploy in minikube
 
-# Deployment steps: helm chart
+## Deployment steps: helm chart
+
 - **STEP 01**: Start minikube cluster
 ```shell
 minikube start
@@ -53,7 +55,8 @@ helm install helloworld-chart helloworld-chart-0.1.0.tgz
 helm delete helloworld-chart
 ```
 
-# Deployment steps: kubernetes deployment
+## Deployment steps: kubernetes deployment
+
 - **STEP01**: a simple sample to be deployed on minikube like deployment
 ```shell
 kubectl create deployment hello-minikube --image=polyverse/node-echo-server
