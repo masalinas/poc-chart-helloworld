@@ -55,7 +55,7 @@ helm install helloworld-chart helloworld-chart-0.1.0.tgz
 helm delete helloworld-chart
 ```
 
-## Deployment steps: kubernetes deployment
+## Deployment steps: kubernetes deployment
 
 - **STEP01**: a simple sample to be deployed on minikube like deployment
 ```shell
