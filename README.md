@@ -4,12 +4,12 @@ PoC Helloworld Helm Package deploy in minikube
 
 ## Deployment steps: helm chart
 
-- **STEP 01**: Start minikube cluster
+- **STEP01**: Start minikube cluster
 ```shell
 minikube start
 ```
 
-- **STEP 02**: Activate dashboard addon in minikube
+- **STEP02**: Activate dashboard addon in minikube
 ```shell
 minikube addons enable dashboard
 ```
