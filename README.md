@@ -45,7 +45,7 @@ docker push ofertoio/helloworld-chart
 helm package helm-chart
 ```
 
-To create a new helm chart package execute
+To create a new helm chart package execute and set **image** and **service** chart attributes from values.yaml
 ```shell
 helm create helm-chart
 ```
