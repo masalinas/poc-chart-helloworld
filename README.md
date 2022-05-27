@@ -47,7 +47,7 @@ helm package helm-chart
 
 To create a new helm chart package execute and set **image** and **service** chart attributes from values.yaml
 ```shell
-helm create helm-chart
+helm create helm
 ```
 
 - **STEP09**: deploy helm chart release in minikube
