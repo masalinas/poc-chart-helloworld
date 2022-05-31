@@ -93,6 +93,12 @@ To create a new helm chart package execute and set **image** and **service** cha
 helm create helm-chart
 ```
 
+In Mac the Helm cache it's in this folder
+
+```shell
+/Users/miguel/Library/Caches/helm/repository
+```
+
 - **STEP01**: Package your helm chart
 The version of the chart must be the same as the appVersion set in the Chart.yaml file of chart
 
