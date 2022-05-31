@@ -149,7 +149,7 @@ helm repo update
 helm upgrade helloworld-chart chartmuseum/helloworld-chart
 ```
 
-## Helm domain models: Chart and Release model
+## Helm domain models: Chart and Release model
 
 Chart Collection obtain by **helm search repo** comand from helm chart repository
 
