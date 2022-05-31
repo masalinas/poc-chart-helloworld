@@ -123,7 +123,7 @@ helm delete helloworld-chart
 - **STEP02**: publish your chart
 
 ```shell
-curl --data-binary "@helloworld-chart-0.1.0.tgz" http://localhost:8088/api/charts
+curl --data-binary "@helloworld-chart-0.20.0.tgz" http://localhost:8088/api/charts
 ```
 
 we could published the chart using a chartmuseum helm plugin called push
@@ -140,7 +140,7 @@ helm push helloworld-chart chartmuseum
 - **STEP03**: update your local chart repositories
 
 ```shell
-helm search update
+helm repo update
 ```
 
 - **STEP05**: Upgrade the chart in kubernetes
