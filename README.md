@@ -20,7 +20,7 @@ minikube dashboard
 ```
 [Minikube Dashboard Link](http://127.0.0.1:39221/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/service?namespace=default)
 
-- **STEP04**: Activate tunelling to expose kubernetes service
+- **STEP04**: Activate tunelling to expose kubernetes loadbalancer service
 ```shell
 sudo minikube tunnel
 ```
