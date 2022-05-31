@@ -47,7 +47,7 @@ helm package helm-chart
 
 To create a new helm chart package execute and set **image** and **service** chart attributes from values.yaml
 ```shell
-helm create helm
+helm create helm-chart
 ```
 
 - **STEP09**: deploy helm chart release in minikube
@@ -118,7 +118,7 @@ docker run --rm -it \
 curl --data-binary "@helloworld-chart-0.1.0.tgz" http://localhost:8088/api/charts
 ```
 
-- **STEP03**: we could published the chart using a chartmuseum helm plugin called push
+we could published the chart using a chartmuseum helm plugin called push
 
 ```shell
 helm plugin install https://github.com/chartmuseum/helm-push
@@ -127,6 +127,12 @@ helm plugin install https://github.com/chartmuseum/helm-push
 then push the chart using the plugin
 ```shell
 helm push helloworld-chart chartmuseum
+```
+
+- **STEP03**: update your local chart repositories
+
+```shell
+helm search update
 ```
 
 - **STEP04**: list charts published in chartmuseum
