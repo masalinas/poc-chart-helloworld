@@ -182,7 +182,8 @@ Release collection obtain by **helm list** command from kubernetes
 
 ## Deployment steps: kubernetes deployment
 
-- **STEP01**: a simple sample to be deployed on minikube like deployment
+A simple sample to be deployed on minikube like deployment
+
 ```shell
 kubectl create deployment hello-minikube --image=polyverse/node-echo-server
 ```
