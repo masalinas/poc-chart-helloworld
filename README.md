@@ -1,10 +1,10 @@
 ## Description
 
-PoC Helloworld Helm Package deployed in minikube
+PoC HelloWorld Helm Package deployed in Minikube
 
 ## Deployment steps: helm chart
 
-- **STEP01**: Start minikube cluster
+- **STEP01**: Start Minikube cluster
 ```shell
 minikube start
 ```
@@ -41,11 +41,14 @@ docker push ofertoio/helloworld-chart
 ```
 
 - **STEP08**: Package your helm chart
+The version of the chart must be the same as the appVersion set in the Chart.yaml file of chart
+
 ```shell
-helm package helm-chart
+helm package helm-chart --version 1.20.0
 ```
 
-To create a new helm chart package execute and set **image** and **service** chart attributes from values.yaml
+To create a new helm chart package execute and set **image** and **service** chart attributes from values.yaml and update **Chart.yaml** with correct version
+
 ```shell
 helm create helm-chart
 ```
@@ -55,7 +58,13 @@ helm create helm-chart
 helm install helloworld-chart helloworld-chart-0.1.0.tgz
 ```
 
+Release deployed
+
 ![kubernetes Dashboard](captures/kubernetes_dashboard.png "kubernetes Dashboard")
+
+Release Version
+
+![Release Version](captures/Release_Version.png "Release Version")
 
 - **STEP10**: Activate tunelling to expose kubernetes service
 ```shell
@@ -141,4 +150,41 @@ helm search update
 helm repo add chartmuseum http://localhost:8088
 
 helm search repo chartmuseum
+```
+
+## Upgrade a release
+
+```shell
+helm upgrade helloworld-chart chartmuseum/helloworld-chart
+```
+
+## Helm domain models: Chart and Release model
+
+Chart Collection obtain by **helm search repo** comand from helm chart repository
+
+```shell
+[
+  {
+    "name": "chartmuseum/helloworld-chart",
+    "version": "0.1.0",
+    "app_version": "1.16.0",
+    "description": "A Helm chart for Kubernetes"
+  }
+]
+```
+
+Release collection obtain by **helm list** command from kubernetes
+
+```shell
+[
+  {
+    "name": "helloworld-chart",
+    "namespace": "default",
+    "revision": "1",
+    "updated": "2022-05-28 08:46:33.236501 +0200 CEST",
+    "status": "deployed",
+    "chart": "helloworld-chart-0.1.0",
+    "app_version": "1.16.0"
+  }
+]
 ```
