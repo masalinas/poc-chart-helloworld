@@ -95,3 +95,44 @@ kubectl port-forward service/hello-minikube 7080:8080
 
 http://localhost:7080/Hello
 ```
+
+## Deployment steps: chartmuseum
+
+- **STEP01**: install chartmuseum chart repository
+
+create a folder called charts to save your charts pushed
+
+```shell
+docker run --rm -it \
+  -p 8088:8080 \
+  -e DEBUG=1 \
+  -e STORAGE=local \
+  -e STORAGE_LOCAL_ROOTDIR=/charts \
+  -v $(pwd)/charts:/charts \
+  ghcr.io/helm/chartmuseum:v0.14.0
+```
+
+- **STEP02**: publish your chart
+
+```shell
+curl --data-binary "@helloworld-chart-0.1.0.tgz" http://localhost:8088/api/charts
+```
+
+- **STEP03**: we could published the chart using a chartmuseum helm plugin called push
+
+```shell
+helm plugin install https://github.com/chartmuseum/helm-push
+```
+
+then push the chart using the plugin
+```shell
+helm push helloworld-chart chartmuseum
+```
+
+- **STEP04**: list charts published in chartmuseum
+
+```shell
+helm repo add chartmuseum http://localhost:8088
+
+helm search repo chartmuseum
+```
