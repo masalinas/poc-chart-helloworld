@@ -2,7 +2,7 @@
 
 PoC HelloWorld Helm Package deployed in Minikube
 
-## Deployment steps: helm chart
+## Deployment steps: Start minikube
 
 - **STEP01**: Start Minikube cluster
 ```shell
@@ -20,32 +20,64 @@ minikube dashboard
 ```
 [Minikube Dashboard Link](http://127.0.0.1:39221/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/service?namespace=default)
 
-- **STEP04**: Build docker image
+- **STEP04**: Activate tunelling to expose kubernetes service
+```shell
+sudo minikube tunnel
+```
+
+## Deployment steps: Deploy Chartmuseum Helm Chart Repository
+
+- **STEP01**: install chartmuseum chart repository
+
+create a folder called charts to save your charts pushed
+
+```shell
+docker run --rm -it \
+  -p 8088:8080 \
+  -e DEBUG=1 \
+  -e STORAGE=local \
+  -e STORAGE_LOCAL_ROOTDIR=/charts \
+  -v $(pwd)/charts:/charts \
+  ghcr.io/helm/chartmuseum:v0.14.0
+```
+
+## Deployment steps: Install nova CLI to compare versions
+
+- **STEP1**: [install nova CLI](https://nova.docs.fairwinds.com/installation/#installation) to check chart versions
+```shell
+curl -L "https://github.com/FairwindsOps/nova/releases/download/1.0.0/nova_1.0.0_linux_amd64.tar.gz" > nova.tar.gz
+tar -xvf nova.tar.gz
+sudo mv nova /usr/local/bin/
+```
+
+- **STEP2**: list helm relases installed
+```shell
+nova find
+```
+
+## Deployment steps: Compile docker Image and publish
+
+- **STEP01**: Build docker image
 ```shell
 docker build -t helloworld-chart .
 ```
 
-- **STEP05**: tag the docker image to be published under your Docker Hub account
+- **STEP02**: tag the docker image to be published under your Docker Hub account
 ```shell
 docker tag helloworld-chart ofertoio/helloworld-chart
 ```
 
-- **STEP06**: login in your Docker Hub account
+- **STEP03**: login in your Docker Hub account
 ```shell
 docker login -u ofertopio -p
 ```
 
-- **STEP07**: Push docker image to your Docker Hug account
+- **STEP04**: Push docker image to your Docker Hug account
 ```shell
 docker push ofertoio/helloworld-chart
 ```
 
-- **STEP08**: Package your helm chart
-The version of the chart must be the same as the appVersion set in the Chart.yaml file of chart
-
-```shell
-helm package helm-chart --version 1.20.0
-```
+## Deployment steps: Package Helm Chart and publish
 
 To create a new helm chart package execute and set **image** and **service** chart attributes from values.yaml and update **Chart.yaml** with correct version
 
@@ -53,9 +85,16 @@ To create a new helm chart package execute and set **image** and **service** cha
 helm create helm-chart
 ```
 
-- **STEP09**: deploy helm chart release in minikube
+- **STEP01**: Package your helm chart
+The version of the chart must be the same as the appVersion set in the Chart.yaml file of chart
+
 ```shell
-helm install helloworld-chart helloworld-chart-0.1.0.tgz
+helm package helm-chart --version 1.20.0
+```
+
+- **STEP02**: deploy helm chart release in minikube
+```shell
+helm install helloworld-chart helloworld-chart-0.20.0.tgz
 ```
 
 Release deployed
@@ -66,24 +105,7 @@ Release Version
 
 ![Release Version](captures/Release_Version.png "Release Version")
 
-- **STEP10**: Activate tunelling to expose kubernetes service
-```shell
-sudo minikube tunnel
-```
-
-- **STEP11**: [install nova CLI](https://nova.docs.fairwinds.com/installation/#installation) to check chart versions
-```shell
-curl -L "https://github.com/FairwindsOps/nova/releases/download/1.0.0/nova_1.0.0_linux_amd64.tar.gz" > nova.tar.gz
-tar -xvf nova.tar.gz
-sudo mv nova /usr/local/bin/
-```
-
-- **STEP12**: list helm relases installed
-```shell
-nova find
-```
-
-- **STEP13**: remove helm chart release from minikube
+- **STEP3**: remove helm chart release from minikube
 ```shell
 helm delete helloworld-chart
 ```
@@ -105,21 +127,7 @@ kubectl port-forward service/hello-minikube 7080:8080
 http://localhost:7080/Hello
 ```
 
-## Deployment steps: chartmuseum
-
-- **STEP01**: install chartmuseum chart repository
-
-create a folder called charts to save your charts pushed
-
-```shell
-docker run --rm -it \
-  -p 8088:8080 \
-  -e DEBUG=1 \
-  -e STORAGE=local \
-  -e STORAGE_LOCAL_ROOTDIR=/charts \
-  -v $(pwd)/charts:/charts \
-  ghcr.io/helm/chartmuseum:v0.14.0
-```
+## Deployment steps: Upgrade your chart
 
 - **STEP02**: publish your chart
 
@@ -152,7 +160,7 @@ helm repo add chartmuseum http://localhost:8088
 helm search repo chartmuseum
 ```
 
-## Upgrade a release
+- **STEP05**: Upgrade the chart in kubernetes
 
 ```shell
 helm upgrade helloworld-chart chartmuseum/helloworld-chart
