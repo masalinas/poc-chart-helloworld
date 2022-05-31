@@ -41,6 +41,14 @@ docker run --rm -it \
   ghcr.io/helm/chartmuseum:v0.14.0
 ```
 
+- **STEP02**: add new chartmuseum repository to helm CLI
+
+```shell
+helm repo add chartmuseum http://localhost:8088
+
+helm search repo chartmuseum
+```
+
 ## Deployment steps: Install nova CLI to compare versions
 
 - **STEP1**: [install nova CLI](https://nova.docs.fairwinds.com/installation/#installation) to check chart versions
@@ -55,7 +63,7 @@ sudo mv nova /usr/local/bin/
 nova find
 ```
 
-## Deployment steps: Compile docker Image and publish
+## Deployment steps: Compile docker Image and publish in Docker Registry (Docker Hub)
 
 - **STEP01**: Build docker image
 ```shell
@@ -110,23 +118,6 @@ Release Version
 helm delete helloworld-chart
 ```
 
-## Deployment steps: kubernetes deployment
-
-- **STEP01**: a simple sample to be deployed on minikube like deployment
-```shell
-kubectl create deployment hello-minikube --image=polyverse/node-echo-server
-```
-
-```shell
-kubectl expose deployment hello-minikube --type=NodePort --port=8080
-```
-
-```shell
-kubectl port-forward service/hello-minikube 7080:8080
-
-http://localhost:7080/Hello
-```
-
 ## Deployment steps: Upgrade your chart
 
 - **STEP02**: publish your chart
@@ -150,14 +141,6 @@ helm push helloworld-chart chartmuseum
 
 ```shell
 helm search update
-```
-
-- **STEP04**: list charts published in chartmuseum
-
-```shell
-helm repo add chartmuseum http://localhost:8088
-
-helm search repo chartmuseum
 ```
 
 - **STEP05**: Upgrade the chart in kubernetes
@@ -195,4 +178,21 @@ Release collection obtain by **helm list** command from kubernetes
     "app_version": "1.16.0"
   }
 ]
+```
+
+## Deployment steps: kubernetes deployment
+
+- **STEP01**: a simple sample to be deployed on minikube like deployment
+```shell
+kubectl create deployment hello-minikube --image=polyverse/node-echo-server
+```
+
+```shell
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+```
+
+```shell
+kubectl port-forward service/hello-minikube 7080:8080
+
+http://localhost:7080/Hello
 ```
