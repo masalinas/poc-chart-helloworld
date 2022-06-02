@@ -8,7 +8,7 @@ image:
   repository: ofertoio/helloworld-chart
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: 1.30.0
 
 imagePullSecrets: []
 nameOverride: ""
@@ -39,9 +39,9 @@ securityContext: {}
 service:
   name: hello-world
   type: LoadBalancer
-  externalPort: 8088
+  externalPort: 8089
   internalPort: 80
-  port: 8088
+  port: 8089
 
 ingress:
   enabled: false
