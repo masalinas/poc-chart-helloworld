@@ -138,7 +138,7 @@ helm push helloworld-chart chartmuseum
 helm repo update
 ```
 
-## Deploy chart in minikube
+## Deploy chart in minikube 
 
 - **STEP01**: deploy helm chart release in minikube
 ```shell
