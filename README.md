@@ -67,12 +67,19 @@ nova find
 
 - **STEP01**: Build docker image
 ```shell
-docker build -t helloworld-chart .
+docker build -t helloworld-chart:1.20.0 .
 ```
 
 - **STEP02**: tag the docker image to be published under your Docker Hub account
 ```shell
-docker tag helloworld-chart ofertoio/helloworld-chart
+docker tag helloworld-chart:1.34.0 ofertoio/helloworld-chart:1.20.0
+```
+
+or 
+
+we could compile and tag in one step like this
+```shell
+docker build -t ofertoio/helloworld-chart:1.20.0 .
 ```
 
 - **STEP03**: login in your Docker Hub account
@@ -82,7 +89,7 @@ docker login -u ofertopio -p
 
 - **STEP04**: Push docker image to your Docker Hug account
 ```shell
-docker push ofertoio/helloworld-chart
+docker push ofertoio/helloworld-chart:1.20.0
 ```
 
 ## Deployment steps: Package Helm Chart and publish
@@ -106,25 +113,7 @@ The version of the chart must be the same as the appVersion set in the Chart.yam
 helm package helm-chart --version 1.20.0
 ```
 
-- **STEP02**: deploy helm chart release in minikube
-```shell
-helm install helloworld-chart helloworld-chart-0.20.0.tgz
-```
-
-Release deployed
-
-![kubernetes Dashboard](captures/kubernetes_dashboard.png "kubernetes Dashboard")
-
-Release Version
-
-![Release Version](captures/Release_Version.png "Release Version")
-
-- **STEP3**: remove helm chart release from minikube
-```shell
-helm delete helloworld-chart
-```
-
-## Deployment steps: Upgrade your chart
+## Deployment steps: publish chart in chart repository
 
 - **STEP02**: publish your chart
 
@@ -149,10 +138,32 @@ helm push helloworld-chart chartmuseum
 helm repo update
 ```
 
-- **STEP05**: Upgrade the chart in kubernetes
+## Deploy chart in minikube
+
+- **STEP01**: deploy helm chart release in minikube
+```shell
+helm install helloworld-chart helloworld-chart-1.20.0.tgz
+```
+
+Release deployed
+
+![kubernetes Dashboard](captures/kubernetes_dashboard.png "kubernetes Dashboard")
+
+Release Version
+
+![Release Version](captures/Release_Version.png "Release Version")
+
+## Upgrade chart in minikube 
+
+- **STEP01**: Upgrade the chart in kubernetes
 
 ```shell
 helm upgrade helloworld-chart chartmuseum/helloworld-chart
+```
+
+- **STEP2**: remove helm chart release from minikube
+```shell
+helm delete helloworld-chart
 ```
 
 ## Helm domain models: Chart and Release model
