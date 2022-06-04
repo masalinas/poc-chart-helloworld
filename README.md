@@ -163,7 +163,7 @@ helm upgrade helloworld-chart chartmuseum/helloworld-chart
 
 - **STEP2**: remove helm chart release from minikube
 ```shell
-helm delete helloworld-chart
+helm uninstall helloworld-chart
 ```
 
 ## Helm domain models: Chart and Release model
