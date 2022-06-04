@@ -49,7 +49,7 @@ helm repo add chartmuseum http://localhost:8088
 helm search repo chartmuseum
 ```
 
-## Deployment steps: Install nova CLI to compare versions
+## Deployment steps: Install nova CLI to compare versions (Optional)
 
 - **STEP1**: [install nova CLI](https://nova.docs.fairwinds.com/installation/#installation) to check chart versions
 ```shell
