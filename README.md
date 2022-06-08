@@ -214,3 +214,22 @@ kubectl port-forward service/hello-minikube 7080:8080
 
 http://localhost:7080/Hello
 ```
+
+## Install Kubeapps
+
+We could use Kubeapps from Bitnami to control visually all chartd of our deployment
+
+```shell
+helm repo add bitnami https://charts.bitnami.com/bitnami
+    
+helm install -n kubeapps --create-namespace kubeapps bitnami/kubeapps
+```
+
+Set a port-forward befaore access to service
+```shell
+kubectl port-forward --namespace kubeapps service/kubeapps 8080:80
+
+http://localhost:8080
+```
+
+![KubeApps Dashboard](captures/kubernetes_kubeapps.png "KubeApps Dashboard")
