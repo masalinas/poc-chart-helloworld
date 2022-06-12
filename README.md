@@ -75,7 +75,7 @@ docker build -t helloworld-chart:1.20.0 .
 docker tag helloworld-chart:1.34.0 ofertoio/helloworld-chart:1.20.0
 ```
 
-or 
+or
 
 we could compile and tag in one step like this
 ```shell
@@ -138,7 +138,7 @@ helm push helloworld-chart chartmuseum
 helm repo update
 ```
 
-## Deploy chart in minikube 
+## Deploy chart in minikube
 
 - **STEP01**: deploy helm chart release in minikube
 ```shell
@@ -153,7 +153,7 @@ Release Version
 
 ![Release Version](captures/Release_Version.png "Release Version")
 
-## Upgrade chart in minikube 
+## Upgrade chart in minikube
 
 - **STEP01**: Upgrade the chart in kubernetes
 
@@ -221,7 +221,7 @@ We could use Kubeapps from Bitnami to control visually all chartd of our deploym
 
 ```shell
 helm repo add bitnami https://charts.bitnami.com/bitnami
-    
+
 helm install -n kubeapps --create-namespace kubeapps bitnami/kubeapps
 ```
 
