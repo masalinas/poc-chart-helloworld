@@ -233,3 +233,39 @@ http://localhost:8080
 ```
 
 ![KubeApps Dashboard](captures/kubernetes_kubeapps.png "KubeApps Dashboard")
+
+## Docker JFrog Artifactory
+
+Login docker to artifactory
+```shell
+docker login https://oferto.jfrog.io
+```
+
+Build and tag docker image to JFrog Artifactory
+```shell
+docker build -t oferto.jfrog.io/training-docker-local/helloworld-chart:1.48.0 .
+```
+
+Push docker image to JFrog Artifactory
+```shell
+docker push oferto.jfrog.io/training-docker-local/helloworld-chart:1.48.0
+```
+
+Create an image pull request in kubernetes
+```shell
+kubectl create secret docker-registry docker-artifactory-registry --docker-username=<USERNAME> --docker-password=<PASSWORD> --docker-email=<USER_EMAIL>
+```
+
+## Helm JFrog Artifactory
+
+Add Helm JFrog Artifactory repository to helm
+```shell
+helm repo add <REPO_KEY_NAME> https://oferto.jfrog.io/artifactory/<REPO_NAME> --username <USERNAME> --password <ACCESS_TOKEN>
+```
+
+Push a charts to JFrog Artifactory
+```shell
+curl -u <USERNAME>:<ACCESS_TOKEN> -T ./helloworld-chart-1.40.0.tgz "https://oferto.jfrog.io/artifactory/<REPO_NAME>/helloworld-chart-1.40.0.tgz"
+```
+
+![Artifactory Helm charts](captures/artifactory_helm.png "Artifactory Helm charts")
