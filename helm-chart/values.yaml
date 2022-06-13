@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: oferto.jfrog.io/training-docker-local/helloworld-chart
+  repository: ofertoio/helloworld-chart  
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: 1.56.0
